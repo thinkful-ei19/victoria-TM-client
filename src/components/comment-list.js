@@ -16,7 +16,7 @@ class CommentList extends React.Component {
     const commentList = myComments.map((comment, index) => {
       const {commentBody, id} = comment
       return(
-          <div key={id}>
+          <div key={id} className="Comment">
             <li>{commentBody}</li>
           </div>
       )

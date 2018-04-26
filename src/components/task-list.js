@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchTask } from '../actions/taskAction'
 import WorkflowList from './workflow-list'
 import CommentList from './comment-list'
+import './task.css'
 
 class TaskList extends React.Component {
     constructor(props){
@@ -18,11 +19,11 @@ class TaskList extends React.Component {
     const {title, content, comment, due } = task
     console.log(task)
       return(
-          <div key={task.id}>
-            <h2>{title}</h2>
-            <section>{content}</section>
+          <div key={task.id} className="Task">
+            <h2 calss="TaskName">{title}</h2>
+            <section className="TaskContent">{content}</section>
             <CommentList commentArr={comment} />
-            <li>{due}</li>
+            <li className="Due">{due}</li>
           </div>
       )
     })
