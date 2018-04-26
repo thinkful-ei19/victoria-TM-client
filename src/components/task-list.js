@@ -1,19 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { fetchTask } from '../actions/action'
+import { fetchTask } from '../actions/taskAction'
 
 class TaskList extends React.Component {
   componentDidMount(){
-    this.props.dispatch(fetchTask())
+    this.props.dispatch(fetchTask());
   }
-
   render() {
-     console.log(this.props.tasks, "hi Iam working");
-    const taskList = this.props.tasks.map((tasks,index)=>{
+     console.log(this.props.task, "hi Iam working in Task");
+    const taskList = this.props.tasks.map((task,index) => {
+      const { comment, title, content, due } = task;
       return(
-          <li key={index}>
-          {tasks}
-          </li>
+          <div key={task.id}>
+            <h2>{title}</h2>
+            <section>{content}</section>
+            <section>{comment}</section>
+            <li>{due}</li>
+          </div>
       )
     })
       return (
@@ -27,7 +30,7 @@ class TaskList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    tasks: state.tasks
+    tasks: state.task.tasks
 })
 
 export default connect(mapStateToProps)(TaskList);

@@ -1,5 +1,4 @@
-import { FETCH_TASK_REQUEST, FETCH_TASK_SUCCESS, FETCH_TASK_ERROR} from '../actions/action';
-import thunk from 'redux';
+import { FETCH_TASK_REQUEST, FETCH_TASK_SUCCESS, FETCH_TASK_ERROR} from '../actions/taskAction';
 
 const initialState = {
     tasks: [],
@@ -7,7 +6,7 @@ const initialState = {
     error: null
 };
 
-const taskReducer = (state = initialState, action) => {
+export function taskReducer(state = initialState, action) {
     if(action.type === FETCH_TASK_REQUEST) {
         return Object.assign({}, state, {loading: true});
     }
@@ -27,5 +26,3 @@ const taskReducer = (state = initialState, action) => {
 
 return state;
 }
-
-export default taskReducer

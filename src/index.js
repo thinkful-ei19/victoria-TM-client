@@ -5,7 +5,6 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import { Provider } from 'react-redux'
 import store from './store'
-import { TaskList } from './components/task-list'
 
 ReactDOM.render(
   <Provider store={store}>

@@ -18,6 +18,7 @@ export const fetchTaskError = (error) => ({
 });
 
 export const fetchTask = () => dispatch => {
+  console.log('fetchtas was called')
    dispatch(fetchTaskRequest());
 
     fetch(`${API_BASE_URL}/tasks`)
