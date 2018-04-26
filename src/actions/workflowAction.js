@@ -27,5 +27,5 @@ export const fetchWorkflow = () => dispatch => {
         .catch(err => {
             console.log(err);
             dispatch(fetchWorkflowError(err))
-})
+        })
 }

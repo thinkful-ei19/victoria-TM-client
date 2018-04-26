@@ -17,14 +17,17 @@ export const fetchTaskError = (error) => ({
     error
 });
 
-export const fetchTask = () => dispatch => {
-  console.log('fetchtas was called')
-   dispatch(fetchTaskRequest());
+export const fetchTask = (id) => dispatch => {
+  console.log(id, 'fetchtask was called')
+   dispatch(fetchTaskRequest(id));
 
-    fetch(`${API_BASE_URL}/tasks`)
-        .then(res =>
-            res.json())
-        .then(tasks => dispatch(fetchTaskSuccess(tasks)))
+    fetch(`${API_BASE_URL}/tasks/${id}`)
+        .then(res => {
+         if(res.status === 200) return res.json()
+        })
+        .then(tasks => {
+          if(tasks) dispatch(fetchTaskSuccess(tasks))
+        })
         .catch(err => {
             console.log(err);
             dispatch(fetchTaskError(err))
