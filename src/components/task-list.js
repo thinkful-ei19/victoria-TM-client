@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchTask } from '../actions/taskAction'
 import WorkflowList from './workflow-list'
-import Task from './task'
+import CommentList from './comment-list'
 
 class TaskList extends React.Component {
     constructor(props){
@@ -14,15 +14,14 @@ class TaskList extends React.Component {
   }
   render() {
     const myTasks = this.props.tasks.tasks.filter(x => this.props.taskArr.includes(x.id))
-    console.log(myTasks, "mytasks")
     const taskList = myTasks.map((task, index) => {
-    console.log(task)
     const {title, content, comment, due } = task
+    console.log(task)
       return(
           <div key={task.id}>
             <h2>{title}</h2>
             <section>{content}</section>
-            <section>{comment}</section>
+            <CommentList commentArr={comment} />
             <li>{due}</li>
           </div>
       )

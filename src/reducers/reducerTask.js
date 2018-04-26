@@ -11,7 +11,6 @@ export function taskReducer(state = initialState, action) {
         return Object.assign({}, state, {loading: true});
     }
     if(action.type === FETCH_TASK_SUCCESS) {
-      console.log(action.tasks,"action task")
         return Object.assign({}, state, {
             loading: false,
             error: false,
