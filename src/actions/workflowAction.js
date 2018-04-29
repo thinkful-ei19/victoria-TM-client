@@ -25,6 +25,12 @@ export const addTask = (task) => ({
     task
 });
 
+export const ADD_WORKFLOW = 'ADD_WORKFLOW';
+export const addWorkflow = (workflow) => ({
+    type: ADD_WORKFLOW,
+    workflow
+});
+
 export const fetchWorkflow = () => dispatch => {
    dispatch(fetchWorkflowRequest());
 
@@ -67,6 +73,50 @@ export const addTaskForm = ({ title, content, due, workflowId }) => dispatch => 
     return;
   })
   .then(() => this.props.dispatch(fetchTask()))
+  .then(() => this.props.reset())
+  .catch(err => {
+    const { reason, message, location } = err;
+    if (reason === 'Validation Error') {
+      return Promise.reject(
+        new SubmissionError({
+          [location]: message
+        })
+      );
+    }
+      return Promise.reject(
+        new SubmissionError({
+          _error: 'Error submitting task'
+        })
+      );
+  })
+}
+
+export const addWorkflowForm = ({ title }) => dispatch => {
+  return fetch(`${API_BASE_URL}/workflows`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title
+    })
+  })
+  .then(res => {
+    if (!res.ok) {
+      if (
+        res.headers.has('content-type') &&
+        res.headers.get('content-type').startsWith('application/json')
+      ) {
+        return res.json().then(err => Promise.reject(err));
+      }
+      return Promise.reject({
+        code: res.status,
+        message: res.statusText
+      });
+    }
+    return;
+  })
+  .then(() => this.props.dispatch(fetchWorkflow()))
   .then(() => this.props.reset())
   .catch(err => {
     const { reason, message, location } = err;

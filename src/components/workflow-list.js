@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchWorkflow, addTask, addTaskForm } from '../actions/workflowAction'
+import { fetchWorkflow, addTask, addTaskForm, addWorkflowForm, addWorkflow } from '../actions/workflowAction'
 import TaskList from './task-list'
-import Form from './task-form'
+import TaskForm from './task-form'
+import WorkflowForm from './workflow-form'
 import './workflow.css';
 
 class WorkflowList extends React.Component {
@@ -21,7 +22,7 @@ class WorkflowList extends React.Component {
             <h1 className="WorkflowTitle">{title}</h1>
             <TaskList taskArr={tasks} />
             <button onClick={() => this.props.dispatch(addTask())}>New Task</button>
-            {(this.props.showTaskForm ? <Form passProps={(o)=>this.props.dispatch(addTaskForm({...o, workflowId: id}))} /> : null)}
+            {(this.props.showTaskForm ? <TaskForm passProps={(o)=>this.props.dispatch(addTaskForm({...o, workflowId: id}))} /> : null)}
           </div>
       )
     })
@@ -31,6 +32,8 @@ class WorkflowList extends React.Component {
           <ul>
           {workflowList}
           </ul>
+          <button onClick={() => this.props.dispatch(addWorkflow())}>New Workflow</button>
+          {(this.props.showWorkflowForm ? <WorkflowForm passProps={(o)=>this.props.dispatch(addWorkflowForm(o))} /> : null)}
       </div>
     );
   }
@@ -38,7 +41,8 @@ class WorkflowList extends React.Component {
 
 const mapStateToProps = (state) => ({
     workflows: state.workflow.workflows,
-    showTaskForm: state.workflow.showTaskForm
+    showTaskForm: state.workflow.showTaskForm,
+    showWorkflowForm: state.workflow.showWorkflowForm
 })
 
 export default connect(mapStateToProps)(WorkflowList);
