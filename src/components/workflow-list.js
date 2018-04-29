@@ -21,7 +21,7 @@ class WorkflowList extends React.Component {
             <h1 className="WorkflowTitle">{title}</h1>
             <TaskList taskArr={tasks} />
             <button onClick={() => this.props.dispatch(addTask())}>New Task</button>
-            {(this.props.showForm ? <Form passProps={(o)=>this.props.dispatch(addTaskForm({...o, workflowId: id}))} /> : null)}
+            {(this.props.showTaskForm ? <Form passProps={(o)=>this.props.dispatch(addTaskForm({...o, workflowId: id}))} /> : null)}
           </div>
       )
     })
@@ -38,7 +38,7 @@ class WorkflowList extends React.Component {
 
 const mapStateToProps = (state) => ({
     workflows: state.workflow.workflows,
-    showForm: state.workflow.showForm
+    showTaskForm: state.workflow.showTaskForm
 })
 
 export default connect(mapStateToProps)(WorkflowList);

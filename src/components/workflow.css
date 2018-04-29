@@ -25,6 +25,21 @@
   margin-left: 25vw;
   height: 3em;
 }
+
+form {
+  width:80%;
+  border: 2px solid grey;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1em;
+  border-radius: 12px;
+  background-color: lightgrey;
+}
+
+form input {
+  margin: 1em;
+}
+
 /* Media Queries */
 @media(max-width: 600px) {
   .flexContainer {

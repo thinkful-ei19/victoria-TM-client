@@ -2,7 +2,7 @@ import { FETCH_WORKFLOW_REQUEST, FETCH_WORKFLOW_SUCCESS, FETCH_WORKFLOW_ERROR, A
 
 const initialState = {
     workflows: [],
-    showForm: false,
+    showTaskForm: false,
     loading: false,
     error: null
 };
@@ -26,7 +26,7 @@ export function workflowReducer(state = initialState, action) {
     }
     if (action.type === ADD_TASK) {
         return Object.assign({}, state, {
-          showForm: true
+          showTaskForm: true
         })
     }
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchTask } from '../actions/taskAction'
+import { fetchTask, addComment, addCommentForm } from '../actions/taskAction'
 import CommentList from './comment-list'
+import Form from './comment-form'
 import './task.css'
 
 class TaskList extends React.Component {
@@ -11,13 +12,16 @@ class TaskList extends React.Component {
   render() {
     const myTasks = this.props.tasks.tasks.filter(x => this.props.taskArr.includes(x.id))
     const taskList = myTasks.map((task, index) => {
-    const {title, content, comment, due } = task
+    const {title, content, comment, due, id } = task
+    console.log(this.props.showCommentForm )
       return(
           <div key={task.id} className="Task">
             <h2 calss="TaskName">{title}</h2>
             <section className="TaskContent">{content}</section>
             <CommentList commentArr={comment} />
             <li className="Due">{due}</li>
+            <button onClick={() => this.props.dispatch(addComment())}>Add comment</button>
+            {(this.props.showCommentForm ? <Form passProps={(o)=>this.props.dispatch(addCommentForm({...o, taskId: id}))} /> : null)}
           </div>
       )
     })
@@ -30,7 +34,8 @@ class TaskList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    tasks: state.task
+    tasks: state.task,
+    showCommentForm: state.task.showCommentForm
 })
 
 export default connect(mapStateToProps)(TaskList);

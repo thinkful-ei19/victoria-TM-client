@@ -39,7 +39,6 @@ export const fetchWorkflow = () => dispatch => {
 }
 
 export const addTaskForm = ({ title, content, due, workflowId }) => dispatch => {
-  console.log({ title, content, due, workflowId })
   return fetch(`${API_BASE_URL}/tasks`, {
     method: 'POST',
     headers: {
