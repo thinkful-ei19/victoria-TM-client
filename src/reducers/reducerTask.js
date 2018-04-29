@@ -1,4 +1,4 @@
-import { FETCH_TASK_REQUEST, FETCH_TASK_SUCCESS, FETCH_TASK_ERROR} from '../actions/taskAction';
+import { FETCH_TASK_REQUEST, FETCH_TASK_SUCCESS, FETCH_TASK_ERROR } from '../actions/taskAction';
 
 const initialState = {
     tasks: [],
@@ -23,6 +23,8 @@ export function taskReducer(state = initialState, action) {
             error: action.error
         } )
     }
+
+
 
 return state;
 }

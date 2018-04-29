@@ -1,13 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchComment } from '../actions/commentAction'
-import TaskList from './task-list'
 
 class CommentList extends React.Component {
-    constructor(props){
-      super(props)
-    }
-
   componentDidMount(){
     this.props.commentArr.forEach(id => this.props.dispatch(fetchComment(id)))
   }

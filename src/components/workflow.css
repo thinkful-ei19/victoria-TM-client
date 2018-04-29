@@ -19,6 +19,12 @@
   color: #ffffff;
 }
 
+.button {
+  width: 10em;
+  margin: 0 auto;
+  margin-left: 25vw;
+  height: 3em;
+}
 /* Media Queries */
 @media(max-width: 600px) {
   .flexContainer {

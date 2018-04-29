@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TaskList from './components/task-list';
 import WorkflowList from './components/workflow-list';
 import { connect } from 'react-redux';
 
