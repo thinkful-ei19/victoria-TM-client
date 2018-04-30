@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchTask, addComment, addCommentForm } from '../actions/taskAction'
+import { fetchTask, addComment, addCommentForm, deleteTaskForm } from '../actions/taskAction'
 import CommentList from './comment-list'
 import Form from './comment-form'
 import './task.css'
@@ -13,9 +13,9 @@ class TaskList extends React.Component {
     const myTasks = this.props.tasks.tasks.filter(x => this.props.taskArr.includes(x.id))
     const taskList = myTasks.map((task, index) => {
     const {title, content, comment, due, id } = task
-    console.log(this.props.showCommentForm )
       return(
-          <div key={task.id} className="Task">
+          <div key={id} className="Task">
+            <button onClick={() => this.props.dispatch(deleteTaskForm(id))}>Delete Task</button>
             <h2 calss="TaskName">{title}</h2>
             <section className="TaskContent">{content}</section>
             <CommentList commentArr={comment} />

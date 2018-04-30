@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchComment } from '../actions/commentAction'
+import './comment.css'
 
 class CommentList extends React.Component {
   componentDidMount(){

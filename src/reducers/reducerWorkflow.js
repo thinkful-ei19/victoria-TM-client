@@ -1,4 +1,14 @@
-import { FETCH_WORKFLOW_REQUEST, FETCH_WORKFLOW_SUCCESS, FETCH_WORKFLOW_ERROR, ADD_TASK, ADD_WORKFLOW } from '../actions/workflowAction';
+import {
+  FETCH_WORKFLOW_REQUEST,
+  FETCH_WORKFLOW_SUCCESS,
+  FETCH_WORKFLOW_ERROR,
+  ADD_TASK,
+  ADD_WORKFLOW
+} from '../actions/workflowAction';
+
+import {
+  TASK_TO_WORKFLOW
+} from '../actions/taskAction';
 
 const initialState = {
     workflows: [],
@@ -35,6 +45,18 @@ export function workflowReducer(state = initialState, action) {
           showTaskForm: true
         })
     }
+    if(action.type === TASK_TO_WORKFLOW) {
+        return Object.assign({}, state, {
+            workflows: state.workflows.map(workflow => {
+              if(action.task.workflow.id === workflow.id){
+                workflow.tasks =   [...workflow.tasks, action.task.task.id]
+              }
+              return workflow
+            }),
+            showTaskForm: false
+        })
+    }
+
 
 return state;
 }

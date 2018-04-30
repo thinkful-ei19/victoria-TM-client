@@ -1,4 +1,8 @@
-import { FETCH_COMMENT_REQUEST, FETCH_COMMENT_SUCCESS, FETCH_COMMENT_ERROR} from '../actions/commentAction';
+import {
+  FETCH_COMMENT_REQUEST,
+  FETCH_COMMENT_SUCCESS,
+  FETCH_COMMENT_ERROR
+} from '../actions/commentAction';
 
 const initialState = {
     comments: [],

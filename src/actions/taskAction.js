@@ -8,10 +8,12 @@ export const fetchTaskRequest = () => ({
 });
 
 export const FETCH_TASK_SUCCESS = 'FETCH_TASK_SUCCESS'
-export const fetchTaskSuccess = (tasks) => ({
+export const fetchTaskSuccess = (tasks) => {
+  console.log(tasks)
+  return ({
     type: FETCH_TASK_SUCCESS,
     tasks
-});
+})};
 
 export const FETCH_TASK_ERROR = 'FETCH_TASK_ERROR'
 export const fetchTaskError = (error) => ({
@@ -19,10 +21,22 @@ export const fetchTaskError = (error) => ({
     error
 });
 
+export const DELETE_TASK = 'DELETE_TASK';
+export const deleteTask = (id) => ({
+    type: DELETE_TASK,
+    id
+});
+
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const addComment = (comment) => ({
     type: ADD_COMMENT,
     comment
+});
+
+export const TASK_TO_WORKFLOW = 'TASK_TO_WORKFLOW';
+export const taskToWorkflow = (task) => ({
+    type: TASK_TO_WORKFLOW,
+    task
 });
 
 export const fetchTask = (id) => dispatch => {
@@ -32,8 +46,8 @@ export const fetchTask = (id) => dispatch => {
         .then(res => {
          if(res.status === 200) return res.json()
         })
-        .then(tasks => {
-          if(tasks) dispatch(fetchTaskSuccess(tasks))
+        .then(task => {
+          if(task) dispatch(fetchTaskSuccess(task))
         })
         .catch(err => {
             console.log(err);
@@ -76,6 +90,8 @@ export const addCommentForm = ({ commentBody, taskId }) => dispatch => {
         new SubmissionError({
           [location]: message
         })
+
+
       );
     }
       return Promise.reject(
@@ -85,3 +101,19 @@ export const addCommentForm = ({ commentBody, taskId }) => dispatch => {
       );
   })
 }
+
+export const deleteTaskForm = (id) => dispatch => {
+console.log(id,'IDDD')
+  return fetch(`${API_BASE_URL}/tasks/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return dispatch(deleteTask(id));
+  });
+};

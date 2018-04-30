@@ -1,6 +1,6 @@
 import { API_BASE_URL } from '../config'
 import { SubmissionError } from 'redux-form'
-import { fetchTask } from './taskAction'
+import { taskToWorkflow } from './taskAction'
 
 export const FETCH_WORKFLOW_REQUEST = 'FETCH_WORKFLOW_REQUEST'
 export const fetchWorkflowRequest = () => ({
@@ -70,11 +70,13 @@ export const addTaskForm = ({ title, content, due, workflowId }) => dispatch => 
         message: res.statusText
       });
     }
-    return;
+    return res.json();
   })
-  .then(() => this.props.dispatch(fetchTask()))
-  .then(() => this.props.reset())
+  .then((json) => {
+    console.log(taskToWorkflow(json), 'JSON')
+    return dispatch(taskToWorkflow(json))})
   .catch(err => {
+    console.log(err, 'ERROR')
     const { reason, message, location } = err;
     if (reason === 'Validation Error') {
       return Promise.reject(
