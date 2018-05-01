@@ -1,6 +1,5 @@
 import { API_BASE_URL } from '../config'
 import { SubmissionError } from 'redux-form'
-import { taskToWorkflow } from './taskAction'
 
 export const FETCH_WORKFLOW_REQUEST = 'FETCH_WORKFLOW_REQUEST'
 export const fetchWorkflowRequest = () => ({
@@ -8,10 +7,12 @@ export const fetchWorkflowRequest = () => ({
 });
 
 export const FETCH_WORKFLOW_SUCCESS = 'FETCH_WORKFLOW_SUCCESS'
-export const fetchWorkflowSuccess = (workflows) => ({
+export const fetchWorkflowSuccess = (workflows) => {
+  console.log(workflows)
+  return ({
     type: FETCH_WORKFLOW_SUCCESS,
     workflows
-});
+})};
 
 export const FETCH_WORKFLOW_ERROR = 'FETCH_WORKFLOW_ERROR'
 export const fetchWorkflowError = (error) => ({
@@ -31,6 +32,14 @@ export const addWorkflow = (workflow) => ({
     workflow
 });
 
+export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS';
+export const addTaskSuccess = (task) => {
+  console.log("im working")
+  return ({
+    type: ADD_TASK_SUCCESS,
+    task
+})};
+
 export const fetchWorkflow = () => dispatch => {
    dispatch(fetchWorkflowRequest());
 
@@ -45,6 +54,7 @@ export const fetchWorkflow = () => dispatch => {
 }
 
 export const addTaskForm = ({ title, content, due, workflowId }) => dispatch => {
+  console.log(title, "title")
   return fetch(`${API_BASE_URL}/tasks`, {
     method: 'POST',
     headers: {
@@ -70,11 +80,12 @@ export const addTaskForm = ({ title, content, due, workflowId }) => dispatch => 
         message: res.statusText
       });
     }
+
     return res.json();
   })
   .then((json) => {
-    console.log(taskToWorkflow(json), 'JSON')
-    return dispatch(taskToWorkflow(json))})
+    console.log(json, 'JSON')
+    return dispatch(addTaskSuccess(json))})
   .catch(err => {
     console.log(err, 'ERROR')
     const { reason, message, location } = err;

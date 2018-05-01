@@ -7,7 +7,7 @@ export default class CommentForm extends Component {
     const newObj = {
       commentBody: e.target.commentInput.value
     }
-    this.props.passProps(newObj)
+    this.props.passAddTaskProps(newObj)
     e.target.commentInput.value = '';
   }
 

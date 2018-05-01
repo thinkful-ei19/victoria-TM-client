@@ -9,7 +9,7 @@ export default class TaskForm extends Component {
       content: e.target.contentInput.value,
       due: e.target.dueInput.value
     }
-    this.props.passProps(newObj)
+    this.props.passAddTaskProps(newObj)
     e.target.titleInput.value = '';
     e.target.contentInput.value = '';
     e.target.dueInput.value = '';

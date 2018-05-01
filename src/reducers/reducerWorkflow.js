@@ -3,22 +3,22 @@ import {
   FETCH_WORKFLOW_SUCCESS,
   FETCH_WORKFLOW_ERROR,
   ADD_TASK,
-  ADD_WORKFLOW
+  ADD_WORKFLOW,
+  ADD_TASK_SUCCESS
 } from '../actions/workflowAction';
 
 import {
-  TASK_TO_WORKFLOW
+  DELETE_TASK
 } from '../actions/taskAction';
 
 const initialState = {
-    workflows: [],
-    showTaskForm: false,
-    showWorkflowForm: false,
-    loading: false,
-    error: null
-};
+  workflows: [],
+  showWorkflowForm: false,
+  loading: false,
+  error: null
+}
 
-export function workflowReducer(state = initialState, action) {
+export function workflowsReducer(state = initialState, action) {
     if(action.type === FETCH_WORKFLOW_REQUEST) {
         return Object.assign({}, state, {loading: true});
     }
@@ -35,6 +35,14 @@ export function workflowReducer(state = initialState, action) {
             error: action.error
         } )
     }
+    if(action.type === ADD_TASK_SUCCESS){
+      return Object.assign({}, state, {workflows: state.workflows.map(workflow => {
+        if(action.task.workflow.id === workflow.id){
+          workflow.tasks = [...workflow.tasks, action.task.task];
+        }
+        return workflow
+      })})
+    }
     if (action.type === ADD_WORKFLOW) {
         return Object.assign({}, state, {
           showWorkflowForm: true
@@ -45,16 +53,14 @@ export function workflowReducer(state = initialState, action) {
           showTaskForm: true
         })
     }
-    if(action.type === TASK_TO_WORKFLOW) {
-        return Object.assign({}, state, {
-            workflows: state.workflows.map(workflow => {
-              if(action.task.workflow.id === workflow.id){
-                workflow.tasks =   [...workflow.tasks, action.task.task.id]
-              }
-              return workflow
-            }),
-            showTaskForm: false
-        })
+    if (action.type === DELETE_TASK) {
+      console.log(action, 'action')
+      return Object.assign({}, state, {workflows: state.workflows.map(workflow => {
+        if(action.id.workflowId === workflow.id){
+          workflow.tasks = workflow.tasks.filter(task => task.id !== action.id.taskId);
+        }
+        return workflow;
+      })})
     }
 
 

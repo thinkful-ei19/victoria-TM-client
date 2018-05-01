@@ -1,15 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchComment } from '../actions/commentAction'
 import './comment.css'
 
 class CommentList extends React.Component {
-  componentDidMount(){
-    this.props.commentArr.forEach(id => this.props.dispatch(fetchComment(id)))
-  }
+
   render() {
-    const myComments = this.props.comments.comments.filter(x => this.props.commentArr.includes(x.id))
-    const commentList = myComments.map((comment, index) => {
+    const commentList = this.props.commentArr.map((comment, index) => {
       const {commentBody, id} = comment
       return(
           <div key={id} className="Comment">

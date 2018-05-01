@@ -7,7 +7,7 @@ export default class WorkflowForm extends Component {
     const newObj = {
       title: e.target.titleInput.value
     }
-    this.props.passProps(newObj)
+    this.props.passAddTaskProps(newObj)
     e.target.titleInput.value = '';
   }
 

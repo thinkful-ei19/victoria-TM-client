@@ -1,13 +1,9 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { taskReducer } from './reducers/reducerTask';
-import { workflowReducer } from './reducers/reducerWorkflow';
-import { commentReducer } from './reducers/reducerComment';
+import { workflowsReducer } from './reducers/reducerWorkflow';
 import thunk from 'redux-thunk'
 
 const reducers = {
-  workflow: workflowReducer,
-  task: taskReducer,
-  comment: commentReducer
+  workflow: workflowsReducer
 };
 
 const reducer = combineReducers(reducers);
