@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 export default class TaskForm extends Component {
 
   handleSubmit(e){
-    console.log(e)
     const newObj = {
       title: e.target.titleInput.value,
       content: e.target.contentInput.value,

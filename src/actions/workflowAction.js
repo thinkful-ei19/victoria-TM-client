@@ -8,7 +8,7 @@ export const fetchWorkflowRequest = () => ({
 
 export const FETCH_WORKFLOW_SUCCESS = 'FETCH_WORKFLOW_SUCCESS'
 export const fetchWorkflowSuccess = (workflows) => {
-  console.log(workflows)
+
   return ({
     type: FETCH_WORKFLOW_SUCCESS,
     workflows
@@ -20,25 +20,23 @@ export const fetchWorkflowError = (error) => ({
     error
 });
 
-export const ADD_TASK = 'ADD_TASK';
-export const addTask = (task) => ({
-    type: ADD_TASK,
-    task
-});
-
 export const ADD_WORKFLOW = 'ADD_WORKFLOW';
 export const addWorkflow = (workflow) => ({
     type: ADD_WORKFLOW,
     workflow
 });
 
-export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS';
-export const addTaskSuccess = (task) => {
-  console.log("im working")
-  return ({
-    type: ADD_TASK_SUCCESS,
-    task
-})};
+export const ADD_WORKFLOW_SUCCESS = 'ADD_WORKFLOW_SUCCESS';
+export const addWorkflowSuccess = (workflow) => ({
+    type: ADD_WORKFLOW_SUCCESS,
+    workflow
+});
+
+export const DELETE_WORKFLOW = 'DELETE_WORKFLOW';
+export const deleteWorkflow = (id) => ({
+    type: DELETE_WORKFLOW,
+    id
+});
 
 export const fetchWorkflow = () => dispatch => {
    dispatch(fetchWorkflowRequest());
@@ -48,63 +46,13 @@ export const fetchWorkflow = () => dispatch => {
             res.json())
         .then(workflows => dispatch(fetchWorkflowSuccess(workflows)))
         .catch(err => {
-            console.log(err);
+
             dispatch(fetchWorkflowError(err))
         })
 }
 
-export const addTaskForm = ({ title, content, due, workflowId }) => dispatch => {
-  console.log(title, "title")
-  return fetch(`${API_BASE_URL}/tasks`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      title,
-      content,
-      due,
-      workflowId
-    })
-  })
-  .then(res => {
-    if (!res.ok) {
-      if (
-        res.headers.has('content-type') &&
-        res.headers.get('content-type').startsWith('application/json')
-      ) {
-        return res.json().then(err => Promise.reject(err));
-      }
-      return Promise.reject({
-        code: res.status,
-        message: res.statusText
-      });
-    }
 
-    return res.json();
-  })
-  .then((json) => {
-    console.log(json, 'JSON')
-    return dispatch(addTaskSuccess(json))})
-  .catch(err => {
-    console.log(err, 'ERROR')
-    const { reason, message, location } = err;
-    if (reason === 'Validation Error') {
-      return Promise.reject(
-        new SubmissionError({
-          [location]: message
-        })
-      );
-    }
-      return Promise.reject(
-        new SubmissionError({
-          _error: 'Error submitting task'
-        })
-      );
-  })
-}
-
-export const addWorkflowForm = ({ title }) => dispatch => {
+export const addWorkflowForm = ({ title, workflowId }) => dispatch => {
   return fetch(`${API_BASE_URL}/workflows`, {
     method: 'POST',
     headers: {
@@ -127,10 +75,11 @@ export const addWorkflowForm = ({ title }) => dispatch => {
         message: res.statusText
       });
     }
-    return;
+    return res.json();
   })
-  .then(() => this.props.dispatch(fetchWorkflow()))
-  .then(() => this.props.reset())
+  .then((json) => {
+
+    return dispatch(addWorkflowSuccess(json))})
   .catch(err => {
     const { reason, message, location } = err;
     if (reason === 'Validation Error') {
@@ -147,3 +96,19 @@ export const addWorkflowForm = ({ title }) => dispatch => {
       );
   })
 }
+
+export const deleteWorkflowForm = (id) => dispatch => {
+
+  return fetch(`${API_BASE_URL}/workflows/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return dispatch(deleteWorkflow(id));
+  });
+};

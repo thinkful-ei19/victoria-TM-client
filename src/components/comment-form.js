@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 export default class CommentForm extends Component {
-
   handleSubmit(e){
-    console.log(e)
     const newObj = {
-      commentBody: e.target.commentInput.value
+      commentBody: e.target.commentInput.value,
+      workflowId: this.props.workflowId,
+      taskId: this.props.taskId
     }
-    this.props.passAddTaskProps(newObj)
+    this.props.passAddCommentProps(newObj)
     e.target.commentInput.value = '';
   }
 

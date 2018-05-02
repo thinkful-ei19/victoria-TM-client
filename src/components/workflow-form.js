@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 export default class WorkflowForm extends Component {
 
   handleSubmit(e){
-    console.log(e)
     const newObj = {
       title: e.target.titleInput.value
     }

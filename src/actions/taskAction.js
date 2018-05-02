@@ -1,74 +1,74 @@
 import { API_BASE_URL } from '../config'
 import { SubmissionError } from 'redux-form'
 
+export const ADD_TASK = 'ADD_TASK';
+export const addTask = (id) => ({
+    type: ADD_TASK,
+    id
+});
+
+export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS';
+export const addTaskSuccess = (task) => {
+  return ({
+    type: ADD_TASK_SUCCESS,
+    task
+})};
+
 export const DELETE_TASK = 'DELETE_TASK';
 export const deleteTask = (id) => ({
     type: DELETE_TASK,
     id
 });
 
-export const ADD_COMMENT = 'ADD_COMMENT';
-export const addComment = (comment) => ({
-    type: ADD_COMMENT,
-    comment
-});
+export const addTaskForm = ({ title, content, due, workflowId }) => dispatch => {
+  return fetch(`${API_BASE_URL}/tasks`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title,
+      content,
+      due,
+      workflowId
+    })
+  })
+  .then(res => {
+    if (!res.ok) {
+      if (
+        res.headers.has('content-type') &&
+        res.headers.get('content-type').startsWith('application/json')
+      ) {
+        return res.json().then(err => Promise.reject(err));
+      }
+      return Promise.reject({
+        code: res.status,
+        message: res.statusText
+      });
+    }
 
-// export const TASK_TO_WORKFLOW = 'TASK_TO_WORKFLOW';
-// export const taskToWorkflow = (task) => ({
-//     type: TASK_TO_WORKFLOW,
-//     task
-// });
+    return res.json();
+  })
+  .then((json) => dispatch(addTaskSuccess(json)))
+  .catch(err => {
+    const { reason, message, location } = err;
+    if (reason === 'Validation Error') {
+      return Promise.reject(
+        new SubmissionError({
+          [location]: message
+        })
+      );
+    }
+      return Promise.reject(
+        new SubmissionError({
+          _error: 'Error submitting task'
+        })
+      );
+  })
+}
 
-// export const addCommentForm = ({ commentBody, taskId }) => dispatch => {
-//   return fetch(`${API_BASE_URL}/comments`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       commentBody,
-//       taskId
-//     })
-//   })
-//   .then(res => {
-//     if (!res.ok) {
-//       if (
-//         res.headers.has('content-type') &&
-//         res.headers.get('content-type').startsWith('application/json')
-//       ) {
-//         return res.json().then(err => Promise.reject(err));
-//       }
-//       return Promise.reject({
-//         code: res.status,
-//         message: res.statusText
-//       });
-//     }
-//     return;
-//   })
-//   .then(() => this.props.dispatch(fetchComment()))
-//   .then(() => this.props.reset())
-//   .catch(err => {
-//     const { reason, message, location } = err;
-//     if (reason === 'Validation Error') {
-//       return Promise.reject(
-//         new SubmissionError({
-//           [location]: message
-//         })
-//
-//
-//       );
-//     }
-//       return Promise.reject(
-//         new SubmissionError({
-//           _error: 'Error submitting task'
-//         })
-//       );
-//   })
-// }
-//
-export const deleteTaskForm = ({taskId, workflowId}) => dispatch => {
-  console.log(taskId, 'task', workflowId, "WFID" )
-  return fetch(`${API_BASE_URL}/tasks/${taskId}`, {
+export const deleteTaskForm = ({id, workflowId}) => dispatch => {
+  return fetch(`${API_BASE_URL}/tasks/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -78,6 +78,6 @@ export const deleteTaskForm = ({taskId, workflowId}) => dispatch => {
     if (!res.ok) {
       return Promise.reject(res.statusText);
     }
-    return dispatch(deleteTask({taskId, workflowId}));
+    return dispatch(deleteTask({id, workflowId}));
   });
 };
