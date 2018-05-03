@@ -1,15 +1,62 @@
+.Task {
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ transition: 0.3s;
+ padding: 5px 0px 5px 15px;
+ width: 210px;
+ min-height: 30px;
+ background-color: #fff;
+ text-align: left;
+ word-wrap: break-word;
+ margin-left: 10px;
+ margin-right: 5px;
+ margin-bottom: 10px;
+ border-radius: 5px;
+ color: #535969;
+}
+
+.Task:hover {
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+    color: #000000;
+}
+
+.TaskContent {
+  font-size: .9em;
+  padding: 0px 2px;
+  margin: 5px 0px;
+  color: #535969;
+  border-radius: 1px;
+}
+
+
+li {
+ list-style-type: none;
+}
+
+.Workflow:hover {
+    background-color: #7083B2;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+}
+button:hover {
+  background-color: #FFCF76;;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+
+}
+h1:hover {
+    color: #FFCD6F;
+}
 
 .Workflow {
- background-color:  #7F8C8D;
- width: 250px;
- height: 100%;
+ margin: 25px;
+ display: inline-grid;
+ background-color:  #535969;
  max-height: calc(100vh - 140px);
- display: inline;
  float: left;
  padding: 10px;
  padding-left: 5px;
  text-align: center;
  overflow: hidden;
+ border-radius: 5px;
 }
 
 .WorkflowTitle {
@@ -19,6 +66,8 @@
   color: #ffffff;
 }
 
+
+
 .button {
   width: 10em;
   margin: 0 auto;
@@ -26,14 +75,16 @@
   height: 3em;
 }
 
-form {
-  width:80%;
-  border: 2px solid grey;
-  margin: 0 auto;
-  text-align: center;
-  padding: 1em;
-  border-radius: 12px;
-  background-color: lightgrey;
+.form {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top:0;
+  left: 0;
+  padding: 4em;
+  background-color: rgba(0,0,0,0.95);
+  z-index: 10;
 }
 
 form input {

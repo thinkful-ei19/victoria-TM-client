@@ -1,17 +1,1 @@
-.Task {
- padding: 5px 0px 5px 15px;
- width: 210px;
- min-height: 30px;
- background-color: #fff;
- text-align: left;
- word-wrap: break-word;
- margin-left: 10px;
- margin-bottom: 10px;
-}
 
-.TaskContent {
-  font-size: .9em;
-  padding: 0px 2px;
-  margin: 5px 0px;
-  color: #616161;
-}

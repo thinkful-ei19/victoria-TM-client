@@ -44,7 +44,6 @@ export default class TaskForm extends Component {
           ref={input => (this.input = input)}
           required
         />
-        <label htmlFor="dateName">Task Due:</label>
         <input type="date" name="dueInput" required />
         <button
           type="submit"

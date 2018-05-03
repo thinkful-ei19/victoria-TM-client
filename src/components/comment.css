@@ -1,9 +1,14 @@
 .Comment {
- background-color: #b3e6cc;
+ background-color: #FFFEF2;
+ border-style: outset;
+ border-radius: 15px;
  text-align: left;
  word-wrap: break-word;
+ padding: 5px;
+ margin-right: 15px;
  font-size: .9em;
- padding: 0px 2px;
- margin: 5px 0px;
- font-size: .9em;
+}
+
+.Comment:hover {
+ background-color: #FFE2B1;
 }
