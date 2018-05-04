@@ -31,7 +31,6 @@ class WorkflowList extends React.Component {
             <TaskList
               taskArr={tasks}
               workflowId={id}
-
               />
             <button onClick={() => this.props.dispatch(addTask(id))}>New Task</button>
               {(this.props.showTaskForm === id ? <TaskForm passAddTaskProps={(o)=>this.props.dispatch(addTaskForm({...o, workflowId: id}))} /> : null)}

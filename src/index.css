@@ -1,12 +1,14 @@
 body {
+
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background-color: #f7faff;
-  display: inline-grid;
+  display: inline-block;
 }
 
 .topnav {
+  width: 100%;
   background-color: #7083B2;
   overflow: hidden;
   list-style-type: none;
