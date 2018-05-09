@@ -8,21 +8,32 @@
  word-wrap: break-word;
  border-radius: 5px;
  color: #535969;
- padding: 3px;
- margin: 7px;
+ padding: 10px;
+ margin: 10px;
 }
 
 .Task:hover {
-    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
-    color: #000000;
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+  color: #000000;
+}
+
+h2 {
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 
 .TaskContent {
-  font-size: .9em;
-  padding: 0px 2px;
-  margin: 5px 0px;
+  font-style: italic;
+  font-size: 20px;
+  padding: 3px 3px;
+  margin-bottom: 6px;
+  margin: 2px 0px;
   color: #535969;
   border-radius: 1px;
+}
+
+.Due {
+  margin-bottom: 6px;
 }
 
 li {
@@ -49,7 +60,7 @@ button:hover {
 }
 
 .Workflow {
- width: 25%;
+ width: 250px;
  margin: 25px;
  display: flex;
  justify-content: center;
@@ -65,9 +76,7 @@ button:hover {
 
 .WorkflowTitle {
   font-size: 25px;
-  padding: 0px 2px;
-  margin: 5px 0px;
-  color: #ffffff;
+  color: #FFCD6F;
 }
 form {
   width:80%;

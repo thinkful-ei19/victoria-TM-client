@@ -40,11 +40,11 @@ class WorkflowList extends React.Component {
 
     return (
       <div>
+          <button onClick={() => this.props.dispatch(addWorkflow())}>New Workflow</button>
+          {(this.props.showWorkflowForm ? <WorkflowForm passAddTaskProps={(o)=>this.props.dispatch(addWorkflowForm(o))} /> : null)}
           <ul>
           {workflowList}
           </ul>
-          <button onClick={() => this.props.dispatch(addWorkflow())}>New Workflow</button>
-          {(this.props.showWorkflowForm ? <WorkflowForm passAddTaskProps={(o)=>this.props.dispatch(addWorkflowForm(o))} /> : null)}
       </div>
     );
   }

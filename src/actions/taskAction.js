@@ -51,6 +51,7 @@ export const addTaskForm = ({ title, content, due, workflowId }) => dispatch => 
   })
   .then((json) => dispatch(addTaskSuccess(json)))
   .catch(err => {
+    console.log(err, 'Error')
     const { reason, message, location } = err;
     if (reason === 'Validation Error') {
       return Promise.reject(

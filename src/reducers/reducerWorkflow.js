@@ -62,9 +62,9 @@ export function workflowsReducer(state = initialState, action) {
       });
     }
     if(action.type === ADD_TASK_SUCCESS){
-      return Object.assign({}, state, {workflows: state.workflows.map(workflow => {
+      return Object.assign({}, state, {showTaskForm: false, workflows: state.workflows.map(workflow => {
         if(action.task.workflow.id === workflow.id){
-          return Object.assign({}, workflow, {tasks: [...workflow.tasks, action.task.task]});
+          return (Object.assign({}, workflow, false, {tasks: [...workflow.tasks, action.task.task]}));
         }
         return workflow
       })})
@@ -83,7 +83,7 @@ export function workflowsReducer(state = initialState, action) {
       })})
     }
     if(action.type === ADD_COMMENT_SUCCESS){
-      return Object.assign({}, state, {workflows: state.workflows.map(workflow => {
+      return Object.assign({}, state, {showCommentForm: false, workflows: state.workflows.map(workflow => {
         if(action.comment.workflowId === workflow.id){
           return Object.assign({}, workflow, {tasks: workflow.tasks.map(task => {
             if(action.comment.taskId === task.id){
