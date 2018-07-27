@@ -5,8 +5,8 @@ To manage timelines user can also set a deadline for each Task.
 
 Demo : https://victoria-tm-client.herokuapp.com/
 
- <IMG SRC="http://recordit.co/lHvq5JcwUx">
- <IMG SRC="http://recordit.co/lHvq5JcwUx">
+ <IMG SRC="http://g.recordit.co/ttegbgWJ9I.gif">
+ <IMG SRC="http://g.recordit.co/lHvq5JcwUx.gif">
 
 Stack: MongoDB, Node, React, Redux
 
