@@ -1,7 +1,6 @@
 {
    "root": "build/",
    "routes": {
-     "/**": "public/index.html",
-     "/": "public/index.html"
+     "/**": "index.html"
    }
  }
