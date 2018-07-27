@@ -35,6 +35,7 @@ export default class CommentForm extends Component {
           required
         />
         <button
+
           type="submit"
           name="submit"
           id="commentButton"

@@ -34,6 +34,7 @@ export default class WorkflowForm extends Component {
           required
         />
         <button
+
           type="submit"
           name="submit"
           id="workflowButton"
