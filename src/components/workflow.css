@@ -44,15 +44,28 @@ li {
   width: 10em;
   margin: 0 auto;
   margin-left: 25vw;
-  height: 3em;
-}
+  font-size: 10px;
+  background-color: #fff;
+  color: #FFCD6F;
+  border: 2px solid #FFCD6F;
+  border-radius: 4px; }
+  .button:hover {
+    background-color: #FFCD6F;
+    color: #fff;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2)}
 
-button:hover {
-  background-color: #FFCF76;;
-  border-radius: 5px;
-  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+.buttonNav {
+  margin-top: 3px;
+  margin-left: 3px;
+  background-color: #fff;
+  font-size: 10px;
+  color: #7083B2;
+  border: 2px solid #7083B2;
+  border-radius: 4px; }
+  .buttonNav:hover {
+    background-color: #7083B2;
+    color: #fff; }
 
-}
 
 .Workflow:hover {
   background-color: #7083B2;

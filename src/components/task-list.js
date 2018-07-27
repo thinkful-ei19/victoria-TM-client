@@ -4,7 +4,6 @@ import { deleteTaskForm } from '../actions/taskAction'
 import { addComment, addCommentForm } from '../actions/commentAction'
 import CommentList from './comment-list'
 import CommentForm from './comment-form'
-import './task.css'
 
 class TaskList extends React.Component {
   render() {
