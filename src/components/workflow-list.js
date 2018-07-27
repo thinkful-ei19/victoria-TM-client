@@ -26,13 +26,13 @@ class WorkflowList extends React.Component {
 
       return(
           <div key={id} className="Workflow">
-            <button  onClick={() => this.props.dispatch(deleteWorkflowForm(id))}>Delete Workflow</button>
+            <button className="buttonStyle" onClick={() => this.props.dispatch(deleteWorkflowForm(id))}>Delete Workflow</button>
             <h1 className="WorkflowTitle">{title}</h1>
             <TaskList
               taskArr={tasks}
               workflowId={id}
               />
-            <button  onClick={() => this.props.dispatch(addTask(id))}>New Task</button>
+            <button className="buttonStyle" onClick={() => this.props.dispatch(addTask(id))}>New Task</button>
               {(this.props.showTaskForm === id ? <TaskForm passAddTaskProps={(o)=>this.props.dispatch(addTaskForm({...o, workflowId: id}))} /> : null)}
           </div>
       )

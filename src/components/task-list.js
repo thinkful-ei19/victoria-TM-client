@@ -4,6 +4,7 @@ import { deleteTaskForm } from '../actions/taskAction'
 import { addComment, addCommentForm } from '../actions/commentAction'
 import CommentList from './comment-list'
 import CommentForm from './comment-form'
+import './workflow.css';
 
 class TaskList extends React.Component {
   render() {
@@ -13,12 +14,12 @@ class TaskList extends React.Component {
 
       return(
           <div key={task.id} className="Task">
-            <button  onClick={() => this.props.dispatch(deleteTaskForm({id, workflowId}))}>Delete Task</button>
+            <button className="buttonStyle" onClick={() => this.props.dispatch(deleteTaskForm({id, workflowId}))}>Delete Task</button>
             <h2 calss="TaskName">{title}</h2>
             <section className="TaskContent">{content}</section>
             <CommentList commentArr={comment} workflowId={workflowId} taskId={id} />
             <li className="Due">{due}</li>
-            <button  onClick={() => this.props.dispatch(addComment(id))}>Add comment</button>
+            <button className="buttonStyle" onClick={() => this.props.dispatch(addComment(id))}>Add comment</button>
             {(this.props.showCommentForm === id ? <CommentForm workflowId={workflowId} taskId={id}
               passAddCommentProps={(o)=>this.props.dispatch(addCommentForm({...o, taskId: id, workflowId}))} /> : null)}
           </div>

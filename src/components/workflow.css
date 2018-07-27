@@ -54,6 +54,17 @@ li {
     color: #fff;
     box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2)}
 
+.buttonStyle {
+  font-size: 10px;
+  background-color: #fff;
+  color: #FFCD6F;
+  border: 2px solid #FFCD6F;
+  border-radius: 4px; }
+  .buttonStyle:hover {
+    background-color: #FFCD6F;
+    color: #fff;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2)}
+
 .buttonNav {
   margin-top: 3px;
   margin-left: 3px;

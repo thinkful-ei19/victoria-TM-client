@@ -12,7 +12,7 @@ class CommentList extends React.Component {
       const {commentBody, id} = comment
       return(
           <div key={id} className="Comment">
-              <button  onClick={() => this.props.dispatch(deleteCommentForm({id, taskId, workflowId}))}>Delete Com</button>
+              <button className="buttonStyle" onClick={() => this.props.dispatch(deleteCommentForm({id, taskId, workflowId}))}>Delete Com</button>
             <li>{commentBody}</li>
           </div>
       )

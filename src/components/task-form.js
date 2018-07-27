@@ -46,6 +46,7 @@ export default class TaskForm extends Component {
         />
         <input type="date" name="dueInput" required />
         <button
+          className="buttonStyle"
           type="submit"
           name="submit"
           id="taskButton"
