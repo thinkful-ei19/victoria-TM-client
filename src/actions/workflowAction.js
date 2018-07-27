@@ -40,8 +40,9 @@ export const deleteWorkflow = (id) => ({
 
 export const fetchWorkflow = () => dispatch => {
    dispatch(fetchWorkflowRequest());
-
-    fetch(`${API_BASE_URL}/workflows`)
+   const getReq = `${API_BASE_URL}/workflows`;
+   console.log(getReq, "get req")
+    fetch(getReq)
         .then(res =>
             res.json())
         .then(workflows => dispatch(fetchWorkflowSuccess(workflows)))
